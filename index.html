@@ -3,29 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Music Player</title>
+    <title>Reymar's Playlists</title>
     <style>
+        :root {
+            --bg-color: #0f0f13;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-color: #1db954;
+            --text-main: #ffffff;
+            --text-sub: #a7a7a7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 120px;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(15, 15, 19, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #1db954 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Playlist Sections */
+        .category {
+            margin-top: 24px;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 0 16px 12px 16px;
+            color: var(--text-main);
+        }
+
+        /* Horizontal Swipe Carousel */
+        .carousel {
             display: flex;
-            flex-direction: column;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 0 16px 10px 16px;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none; /* Hide scrollbar Chrome/Safari */
+        }
+
+        /* Track Cards */
+        .card {
+            flex: 0 0 140px;
+            scroll-snap-align: start;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            transition: transform 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .card:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-artwork {
+            width: 100%;
+            height: 116px;
+            border-radius: 8px;
+            background: #282828;
+            display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            background-color: #121212;
-            color: #ffffff;
-            margin: 0;
+            font-weight: bold;
+            font-size: 2rem;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        h1 { margin-bottom: 20px; }
-        audio { width: 300px; }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        /* Fixed Bottom Music Player Bar */
+        .player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(24, 24, 32, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid var(--card-border);
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 -8px 24px rgba(0,0,0,0.5);
+        }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .now-playing-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .now-playing-playlist {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+        }
+
+        audio {
+            width: 100%;
+            height: 36px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
-    <h1>Now Playing</h1>
-    <audio controls>
-        <source src="song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+
+    <header>
+        <h1>Reymar's Playlists</h1>
+    </header>
+
+    <!-- Playlist 1: Old Songs 20s -->
+    <section class="category">
+        <h2 class="category-title">Old Songs 20s</h2>
+        <div class="carousel">
+            <div class="card" onclick="playSong('song.mp3', 'Binibini', 'Old Songs 20s')">
+                <div class="card-artwork">📻</div>
+                <div class="card-title">Binibini</div>
+                <div class="card-subtitle">Track 1</div>
+            </div>
+            <div class="card">
+                <div class="card-artwork">🎷</div>
+                <div class="card-title">Classic Hits</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+            <div class="card">
+                <div class="card-artwork">🎙️</div>
+                <div class="card-title">Retro Beats</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playlist 2: Summer Vibes -->
+    <section class="category">
+        <h2 class="category-title">Summer Vibes</h2>
+        <div class="carousel">
+            <div class="card">
+                <div class="card-artwork">☀️</div>
+                <div class="card-title">Beach Jam</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+            <div class="card">
+                <div class="card-artwork">🌊</div>
+                <div class="card-title">Ocean Breeze</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+            <div class="card">
+                <div class="card-artwork">🌴</div>
+                <div class="card-title">Tropical Chill</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playlist 3: Relaxing Mood -->
+    <section class="category">
+        <h2 class="category-title">Relaxing Mood</h2>
+        <div class="carousel">
+            <div class="card">
+                <div class="card-artwork">🌙</div>
+                <div class="card-title">Midnight Lofi</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+            <div class="card">
+                <div class="card-artwork">☕</div>
+                <div class="card-title">Acoustic Chill</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+            <div class="card">
+                <div class="card-artwork">🌧️</div>
+                <div class="card-title">Rainy Days</div>
+                <div class="card-subtitle">Coming Soon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Persistent Bottom Player Controls -->
+    <div class="player-bar">
+        <div class="player-info">
+            <div>
+                <div class="now-playing-title" id="track-name">Binibini</div>
+                <div class="now-playing-playlist" id="playlist-name">Old Songs 20s</div>
+            </div>
+        </div>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="song.mp3" type="audio/mpeg">
+            Your browser does not support audio playback.
+        </audio>
+    </div>
+
+    <script>
+        function playSong(filePath, title, playlist) {
+            const player = document.getElementById('audio-player');
+            const source = document.getElementById('audio-source');
+            const trackTitle = document.getElementById('track-name');
+            const playlistTitle = document.getElementById('playlist-name');
+
+            source.src = filePath;
+            trackTitle.textContent = title;
+            playlistTitle.textContent = playlist;
+
+            player.load();
+            player.play();
+        }
+    </script>
 </body>
 </html>
+
 
