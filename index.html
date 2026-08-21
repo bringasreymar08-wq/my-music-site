@@ -83,8 +83,8 @@
 
         .disc-wrapper {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             margin: 10px 0 20px 0;
             border-radius: 50%;
             background: radial-gradient(circle, #333 15%, #111 16%, #222 30%, #000 70%);
@@ -98,8 +98,8 @@
         .disc-wrapper::after {
             content: '';
             position: absolute;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: #121212;
             border: 2px solid var(--accent-color);
@@ -120,12 +120,12 @@
 
         .playlist-info {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             width: 100%;
         }
 
         .playlist-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
         }
 
@@ -267,7 +267,7 @@
             <div class="disc-wrapper spinning paused"></div>
             <div class="playlist-info">
                 <div class="playlist-title">Favorite Songs</div>
-                <div class="playlist-sub">Your Top Rotation</div>
+                <div class="playlist-sub">Top Heavy Rotation</div>
             </div>
             <div class="track-list">
                 <div class="track-item" id="track-p1-0" onclick="playSong('Favorite Songs', 0)">
@@ -275,7 +275,17 @@
                         <span class="track-num">1</span>
                         <div class="track-details">
                             <span class="track-title">Binibini</span>
-                            <span class="track-artist">Local Track</span>
+                            <span class="track-artist">Brownman Revival</span>
+                        </div>
+                    </div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p1-1" onclick="playSong('Favorite Songs', 1)">
+                    <div class="track-left">
+                        <span class="track-num">2</span>
+                        <div class="track-details">
+                            <span class="track-title">Lintik</span>
+                            <span class="track-artist">Brownman Revival</span>
                         </div>
                     </div>
                     <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
@@ -288,17 +298,47 @@
             <div class="disc-wrapper spinning paused"></div>
             <div class="playlist-info">
                 <div class="playlist-title">Reggae Songs</div>
-                <div class="playlist-sub">Island Beats & Grooves</div>
+                <div class="playlist-sub">Island Beats & Roots</div>
             </div>
             <div class="track-list">
                 <div class="track-item" id="track-p2-0" onclick="playSong('Reggae Songs', 0)">
-                    <div class="track-left">
-                        <span class="track-num">1</span>
-                        <div class="track-details">
-                            <span class="track-title">Reggae Track 1</span>
-                            <span class="track-artist">Coming Soon</span>
-                        </div>
-                    </div>
+                    <div class="track-left"><span class="track-num">1</span><div class="track-details"><span class="track-title">Cool Down</span><span class="track-artist">Kolohe Kai</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-1" onclick="playSong('Reggae Songs', 1)">
+                    <div class="track-left"><span class="track-num">2</span><div class="track-details"><span class="track-title">Dream Girl</span><span class="track-artist">Kolohe Kai</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-2" onclick="playSong('Reggae Songs', 2)">
+                    <div class="track-left"><span class="track-num">3</span><div class="track-details"><span class="track-title">Ehu Girl</span><span class="track-artist">Kolohe Kai</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-3" onclick="playSong('Reggae Songs', 3)">
+                    <div class="track-left"><span class="track-num">4</span><div class="track-details"><span class="track-title">First True Love</span><span class="track-artist">Kolohe Kai</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-4" onclick="playSong('Reggae Songs', 4)">
+                    <div class="track-left"><span class="track-num">5</span><div class="track-details"><span class="track-title">Live Like a Warrior</span><span class="track-artist">Matisyahu</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-5" onclick="playSong('Reggae Songs', 5)">
+                    <div class="track-left"><span class="track-num">6</span><div class="track-details"><span class="track-title">One Day</span><span class="track-artist">Matisyahu</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-6" onclick="playSong('Reggae Songs', 6)">
+                    <div class="track-left"><span class="track-num">7</span><div class="track-details"><span class="track-title">Sunshine</span><span class="track-artist">Matisyahu</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-7" onclick="playSong('Reggae Songs', 7)">
+                    <div class="track-left"><span class="track-num">8</span><div class="track-details"><span class="track-title">Green To Black</span><span class="track-artist">Rebelution</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-8" onclick="playSong('Reggae Songs', 8)">
+                    <div class="track-left"><span class="track-num">9</span><div class="track-details"><span class="track-title">Hate To Be The One</span><span class="track-artist">Rebelution</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p2-9" onclick="playSong('Reggae Songs', 9)">
+                    <div class="track-left"><span class="track-num">10</span><div class="track-details"><span class="track-title">So High</span><span class="track-artist">Rebelution</span></div></div>
                     <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
                 </div>
             </div>
@@ -313,13 +353,7 @@
             </div>
             <div class="track-list">
                 <div class="track-item" id="track-p3-0" onclick="playSong('Relaxing Songs', 0)">
-                    <div class="track-left">
-                        <span class="track-num">1</span>
-                        <div class="track-details">
-                            <span class="track-title">Relaxing Track 1</span>
-                            <span class="track-artist">Coming Soon</span>
-                        </div>
-                    </div>
+                    <div class="track-left"><span class="track-num">1</span><div class="track-details"><span class="track-title">Relaxing Track 1</span><span class="track-artist">Coming Soon</span></div></div>
                     <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
                 </div>
             </div>
@@ -344,10 +378,20 @@
     <script>
         const playlists = {
             "Favorite Songs": [
-                { title: "Binibini", file: "song.mp3", elemId: "track-p1-0" }
+                { title: "Binibini - Brownman Revival", file: "song.mp3", elemId: "track-p1-0" },
+                { title: "Lintik - Brownman Revival", file: "Lintik.mp3", elemId: "track-p1-1" }
             ],
             "Reggae Songs": [
-                { title: "Reggae Track 1", file: "reggae1.mp3", elemId: "track-p2-0" }
+                { title: "Cool Down - Kolohe Kai", file: "cooldown.mp3", elemId: "track-p2-0" },
+                { title: "Dream Girl - Kolohe Kai", file: "dreamgirl.mp3", elemId: "track-p2-1" },
+                { title: "Ehu Girl - Kolohe Kai", file: "ehugirl.mp3", elemId: "track-p2-2" },
+                { title: "First True Love - Kolohe Kai", file: "firsttruelove.mp3", elemId: "track-p2-3" },
+                { title: "Live Like a Warrior - Matisyahu", file: "livewarrior.mp3", elemId: "track-p2-4" },
+                { title: "One Day - Matisyahu", file: "oneday.mp3", elemId: "track-p2-5" },
+                { title: "Sunshine - Matisyahu", file: "sunshine.mp3", elemId: "track-p2-6" },
+                { title: "Green To Black - Rebelution", file: "greentoblack.mp3", elemId: "track-p2-7" },
+                { title: "Hate To Be The One - Rebelution", file: "hatetobe.mp3", elemId: "track-p2-8" },
+                { title: "So High - Rebelution", file: "sohigh.mp3", elemId: "track-p2-9" }
             ],
             "Relaxing Songs": [
                 { title: "Relaxing Track 1", file: "relax1.mp3", elemId: "track-p3-0" }
@@ -408,6 +452,4 @@
     </script>
 </body>
 </html>
-
-
 
