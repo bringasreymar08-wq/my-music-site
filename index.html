@@ -2,163 +2,260 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Reymar's Playlists</title>
     <style>
         :root {
-            --bg-color: #0f0f13;
+            --bg-color: #121212;
             --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.08);
             --accent-color: #1db954;
             --text-main: #ffffff;
-            --text-sub: #a7a7a7;
+            --text-sub: #b3b3b3;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 120px;
-            overflow-x: hidden;
+            overflow: hidden; /* Prevents outer page scrolling */
+            height: 100vh;
         }
 
-        /* Mobile Header */
+        /* Top Header */
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 10;
-            background: rgba(15, 15, 19, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 20px 16px;
-            border-bottom: 1px solid var(--card-border);
+            background: linear-gradient(180deg, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0) 100%);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ffffff 0%, #1db954 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Playlist Sections */
-        .category {
-            margin-top: 24px;
-        }
-
-        .category-title {
             font-size: 1.2rem;
-            font-weight: 700;
-            padding: 0 16px 12px 16px;
-            color: var(--text-main);
+            font-weight: 800;
+            letter-spacing: -0.3px;
         }
 
-        /* Horizontal Swipe Carousel */
-        .carousel {
+        .swipe-hint {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            background: rgba(29, 185, 84, 0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        /* Full Screen Swipe Viewport */
+        .viewport {
             display: flex;
-            gap: 14px;
+            width: 100vw;
+            height: 100vh;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            padding: 0 16px 10px 16px;
-            scrollbar-width: none; /* Hide scrollbar Firefox */
+            scrollbar-width: none;
         }
 
-        .carousel::-webkit-scrollbar {
-            display: none; /* Hide scrollbar Chrome/Safari */
+        .viewport::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Track Cards */
-        .card {
-            flex: 0 0 140px;
+        /* Full Page Playlist Container */
+        .playlist-page {
+            flex: 0 0 100vw;
+            height: 100vh;
             scroll-snap-align: start;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 12px;
-            transition: transform 0.2s ease, background 0.2s ease;
-            cursor: pointer;
+            overflow-y: auto;
+            padding: 70px 16px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .card:active {
-            transform: scale(0.96);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .card-artwork {
-            width: 100%;
-            height: 116px;
-            border-radius: 8px;
-            background: #282828;
+        /* Spinning Vinyl Record */
+        .disc-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 10px 0 20px 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, #333 15%, #111 16%, #222 30%, #000 70%);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 2rem;
+            border: 3px solid #222;
+        }
+
+        .disc-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #121212;
+            border: 2px solid var(--accent-color);
+        }
+
+        .spinning {
+            animation: spin 8s linear infinite;
+        }
+
+        .paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .playlist-info {
+            text-align: center;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .playlist-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .playlist-sub {
+            font-size: 0.85rem;
             color: var(--text-sub);
-            margin-bottom: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-top: 4px;
         }
 
-        .card-title {
-            font-size: 0.9rem;
+        /* Track List (Spotify Style) */
+        .track-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .track-item:active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .track-item.playing {
+            border-color: var(--accent-color);
+            background: rgba(29, 185, 84, 0.1);
+        }
+
+        .track-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .track-num {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            width: 18px;
+        }
+
+        .track-item.playing .track-num {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .track-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-title {
+            font-size: 0.95rem;
             font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .card-subtitle {
+        .track-item.playing .track-title {
+            color: var(--accent-color);
+        }
+
+        .track-artist {
             font-size: 0.75rem;
             color: var(--text-sub);
             margin-top: 2px;
         }
 
-        /* Fixed Bottom Music Player Bar */
+        /* Floating Bottom Player Bar */
         .player-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(24, 24, 32, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(18, 18, 18, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid var(--card-border);
-            padding: 12px 16px;
+            padding: 10px 16px;
             display: flex;
             flex-direction: column;
             gap: 8px;
-            box-shadow: 0 -8px 24px rgba(0,0,0,0.5);
+            z-index: 20;
         }
 
-        .player-info {
+        .player-meta {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
         .now-playing-title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
         }
 
-        .now-playing-playlist {
+        .now-playing-sub {
             font-size: 0.75rem;
             color: var(--accent-color);
+        }
+
+        .shuffle-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            color: var(--text-sub);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .shuffle-btn.active {
+            background: var(--accent-color);
+            color: #000;
         }
 
         audio {
             width: 100%;
             height: 36px;
-            border-radius: 8px;
         }
     </style>
 </head>
@@ -166,104 +263,170 @@
 
     <header>
         <h1>Reymar's Playlists</h1>
+        <div class="swipe-hint">Swipe ⇄</div>
     </header>
 
-    <!-- Playlist 1: Old Songs 20s -->
-    <section class="category">
-        <h2 class="category-title">Old Songs 20s</h2>
-        <div class="carousel">
-            <div class="card" onclick="playSong('song.mp3', 'Binibini', 'Old Songs 20s')">
-                <div class="card-artwork">📻</div>
-                <div class="card-title">Binibini</div>
-                <div class="card-subtitle">Track 1</div>
+    <!-- Full-Screen Swipeable Container -->
+    <div class="viewport">
+
+        <!-- PLAYLIST 1 -->
+        <div class="playlist-page">
+            <div class="disc-wrapper spinning paused" id="disc-1"></div>
+            <div class="playlist-info">
+                <div class="playlist-title">Old Songs 20s</div>
+                <div class="playlist-sub">Classic Hits Collection</div>
             </div>
-            <div class="card">
-                <div class="card-artwork">🎷</div>
-                <div class="card-title">Classic Hits</div>
-                <div class="card-subtitle">Coming Soon</div>
-            </div>
-            <div class="card">
-                <div class="card-artwork">🎙️</div>
-                <div class="card-title">Retro Beats</div>
-                <div class="card-subtitle">Coming Soon</div>
+            <div class="track-list">
+                <div class="track-item" id="track-p1-0" onclick="playSong('Old Songs 20s', 0)">
+                    <div class="track-left">
+                        <span class="track-num">1</span>
+                        <div class="track-details">
+                            <span class="track-title">Binibini</span>
+                            <span class="track-artist">Local Track</span>
+                        </div>
+                    </div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p1-1" onclick="playSong('Old Songs 20s', 1)">
+                    <div class="track-left">
+                        <span class="track-num">2</span>
+                        <div class="track-details">
+                            <span class="track-title">Classic Track 2</span>
+                            <span class="track-artist">Coming Soon</span>
+                        </div>
+                    </div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Playlist 2: Summer Vibes -->
-    <section class="category">
-        <h2 class="category-title">Summer Vibes</h2>
-        <div class="carousel">
-            <div class="card">
-                <div class="card-artwork">☀️</div>
-                <div class="card-title">Beach Jam</div>
-                <div class="card-subtitle">Coming Soon</div>
+        <!-- PLAYLIST 2 -->
+        <div class="playlist-page">
+            <div class="disc-wrapper spinning paused" id="disc-2"></div>
+            <div class="playlist-info">
+                <div class="playlist-title">Summer Vibes</div>
+                <div class="playlist-sub">Beach & Chill Beats</div>
             </div>
-            <div class="card">
-                <div class="card-artwork">🌊</div>
-                <div class="card-title">Ocean Breeze</div>
-                <div class="card-subtitle">Coming Soon</div>
-            </div>
-            <div class="card">
-                <div class="card-artwork">🌴</div>
-                <div class="card-title">Tropical Chill</div>
-                <div class="card-subtitle">Coming Soon</div>
+            <div class="track-list">
+                <div class="track-item" id="track-p2-0" onclick="playSong('Summer Vibes', 0)">
+                    <div class="track-left">
+                        <span class="track-num">1</span>
+                        <div class="track-details">
+                            <span class="track-title">Beach Jam</span>
+                            <span class="track-artist">Coming Soon</span>
+                        </div>
+                    </div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Playlist 3: Relaxing Mood -->
-    <section class="category">
-        <h2 class="category-title">Relaxing Mood</h2>
-        <div class="carousel">
-            <div class="card">
-                <div class="card-artwork">🌙</div>
-                <div class="card-title">Midnight Lofi</div>
-                <div class="card-subtitle">Coming Soon</div>
+        <!-- PLAYLIST 3 -->
+        <div class="playlist-page">
+            <div class="disc-wrapper spinning paused" id="disc-3"></div>
+            <div class="playlist-info">
+                <div class="playlist-title">Relaxing Mood</div>
+                <div class="playlist-sub">Lofi & Rain Sounds</div>
             </div>
-            <div class="card">
-                <div class="card-artwork">☕</div>
-                <div class="card-title">Acoustic Chill</div>
-                <div class="card-subtitle">Coming Soon</div>
-            </div>
-            <div class="card">
-                <div class="card-artwork">🌧️</div>
-                <div class="card-title">Rainy Days</div>
-                <div class="card-subtitle">Coming Soon</div>
+            <div class="track-list">
+                <div class="track-item" id="track-p3-0" onclick="playSong('Relaxing Mood', 0)">
+                    <div class="track-left">
+                        <span class="track-num">1</span>
+                        <div class="track-details">
+                            <span class="track-title">Midnight Lofi</span>
+                            <span class="track-artist">Coming Soon</span>
+                        </div>
+                    </div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Persistent Bottom Player Controls -->
+    </div>
+
+    <!-- Fixed Bottom Player Bar -->
     <div class="player-bar">
-        <div class="player-info">
+        <div class="player-meta">
             <div>
-                <div class="now-playing-title" id="track-name">Binibini</div>
-                <div class="now-playing-playlist" id="playlist-name">Old Songs 20s</div>
+                <div class="now-playing-title" id="track-name">Select a song</div>
+                <div class="now-playing-sub" id="playlist-name">Swipe to choose a playlist</div>
             </div>
+            <button class="shuffle-btn" id="shuffle-toggle" onclick="toggleShuffle()">🔀 Shuffle OFF</button>
         </div>
         <audio id="audio-player" controls>
-            <source id="audio-source" src="song.mp3" type="audio/mpeg">
-            Your browser does not support audio playback.
+            <source id="audio-source" src="" type="audio/mpeg">
         </audio>
     </div>
 
     <script>
-        function playSong(filePath, title, playlist) {
-            const player = document.getElementById('audio-player');
-            const source = document.getElementById('audio-source');
-            const trackTitle = document.getElementById('track-name');
-            const playlistTitle = document.getElementById('playlist-name');
+        const playlists = {
+            "Old Songs 20s": [
+                { title: "Binibini", file: "song.mp3", elemId: "track-p1-0" },
+                { title: "Classic Track 2", file: "song2.mp3", elemId: "track-p1-1" }
+            ],
+            "Summer Vibes": [
+                { title: "Beach Jam", file: "summer1.mp3", elemId: "track-p2-0" }
+            ],
+            "Relaxing Mood": [
+                { title: "Midnight Lofi", file: "lofi1.mp3", elemId: "track-p3-0" }
+            ]
+        };
 
-            source.src = filePath;
-            trackTitle.textContent = title;
-            playlistTitle.textContent = playlist;
+        let currentCategory = "Old Songs 20s";
+        let currentIndex = 0;
+        let isShuffle = false;
+
+        const player = document.getElementById('audio-player');
+        const source = document.getElementById('audio-source');
+        const trackTitle = document.getElementById('track-name');
+        const playlistTitle = document.getElementById('playlist-name');
+        const shuffleBtn = document.getElementById('shuffle-toggle');
+        const discs = document.querySelectorAll('.disc-wrapper');
+
+        function playSong(category, index) {
+            if (!playlists[category] || !playlists[category][index]) return;
+
+            // Remove active style from all tracks
+            document.querySelectorAll('.track-item').forEach(el => el.classList.remove('playing'));
+
+            currentCategory = category;
+            currentIndex = index;
+
+            const song = playlists[category][index];
+            source.src = song.file;
+            trackTitle.textContent = song.title;
+            playlistTitle.textContent = category;
+
+            // Highlight selected track row
+            const trackElem = document.getElementById(song.elemId);
+            if (trackElem) trackElem.classList.add('playing');
 
             player.load();
             player.play();
+            discs.forEach(d => d.classList.remove('paused'));
         }
+
+        player.onplay = () => discs.forEach(d => d.classList.remove('paused'));
+        player.onpause = () => discs.forEach(d => d.classList.add('paused'));
+
+        function toggleShuffle() {
+            isShuffle = !isShuffle;
+            shuffleBtn.classList.toggle('active', isShuffle);
+            shuffleBtn.textContent = isShuffle ? '🔀 Shuffle ON' : '🔀 Shuffle OFF';
+        }
+
+        // Autoplay next track when finished
+        player.addEventListener('ended', function() {
+            const currentList = playlists[currentCategory];
+            if (!currentList) return;
+
+            let nextIndex = isShuffle 
+                ? Math.floor(Math.random() * currentList.length)
+                : (currentIndex + 1) % currentList.length;
+
+            playSong(currentCategory, nextIndex);
+        });
     </script>
 </body>
 </html>
-
 
