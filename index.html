@@ -25,11 +25,10 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            overflow: hidden; /* Prevents outer page scrolling */
+            overflow: hidden;
             height: 100vh;
         }
 
-        /* Top Header */
         header {
             position: fixed;
             top: 0;
@@ -58,7 +57,6 @@
             border-radius: 12px;
         }
 
-        /* Full Screen Swipe Viewport */
         .viewport {
             display: flex;
             width: 100vw;
@@ -72,19 +70,17 @@
             display: none;
         }
 
-        /* Full Page Playlist Container */
         .playlist-page {
             flex: 0 0 100vw;
             height: 100vh;
             scroll-snap-align: start;
             overflow-y: auto;
-            padding: 70px 16px 16px 16px;
+            padding: 70px 16px 160px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Spinning Vinyl Record */
         .disc-wrapper {
             position: relative;
             width: 180px;
@@ -139,7 +135,6 @@
             margin-top: 4px;
         }
 
-        /* Track List (Spotify Style) */
         .track-list {
             width: 100%;
             display: flex;
@@ -205,7 +200,6 @@
             margin-top: 2px;
         }
 
-        /* Floating Bottom Player Bar */
         .player-bar {
             position: fixed;
             bottom: 0;
@@ -266,18 +260,17 @@
         <div class="swipe-hint">Swipe ⇄</div>
     </header>
 
-    <!-- Full-Screen Swipeable Container -->
     <div class="viewport">
 
-        <!-- PLAYLIST 1 -->
+        <!-- PLAYLIST 1: Favorite Songs -->
         <div class="playlist-page">
-            <div class="disc-wrapper spinning paused" id="disc-1"></div>
+            <div class="disc-wrapper spinning paused"></div>
             <div class="playlist-info">
-                <div class="playlist-title">Old Songs 20s</div>
-                <div class="playlist-sub">Classic Hits Collection</div>
+                <div class="playlist-title">Favorite Songs</div>
+                <div class="playlist-sub">Your Top Rotation</div>
             </div>
             <div class="track-list">
-                <div class="track-item" id="track-p1-0" onclick="playSong('Old Songs 20s', 0)">
+                <div class="track-item" id="track-p1-0" onclick="playSong('Favorite Songs', 0)">
                     <div class="track-left">
                         <span class="track-num">1</span>
                         <div class="track-details">
@@ -287,11 +280,22 @@
                     </div>
                     <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
                 </div>
-                <div class="track-item" id="track-p1-1" onclick="playSong('Old Songs 20s', 1)">
+            </div>
+        </div>
+
+        <!-- PLAYLIST 2: Reggae Songs -->
+        <div class="playlist-page">
+            <div class="disc-wrapper spinning paused"></div>
+            <div class="playlist-info">
+                <div class="playlist-title">Reggae Songs</div>
+                <div class="playlist-sub">Island Beats & Grooves</div>
+            </div>
+            <div class="track-list">
+                <div class="track-item" id="track-p2-0" onclick="playSong('Reggae Songs', 0)">
                     <div class="track-left">
-                        <span class="track-num">2</span>
+                        <span class="track-num">1</span>
                         <div class="track-details">
-                            <span class="track-title">Classic Track 2</span>
+                            <span class="track-title">Reggae Track 1</span>
                             <span class="track-artist">Coming Soon</span>
                         </div>
                     </div>
@@ -300,40 +304,19 @@
             </div>
         </div>
 
-        <!-- PLAYLIST 2 -->
+        <!-- PLAYLIST 3: Relaxing Songs -->
         <div class="playlist-page">
-            <div class="disc-wrapper spinning paused" id="disc-2"></div>
+            <div class="disc-wrapper spinning paused"></div>
             <div class="playlist-info">
-                <div class="playlist-title">Summer Vibes</div>
-                <div class="playlist-sub">Beach & Chill Beats</div>
+                <div class="playlist-title">Relaxing Songs</div>
+                <div class="playlist-sub">Chill Acoustic & Lofi</div>
             </div>
             <div class="track-list">
-                <div class="track-item" id="track-p2-0" onclick="playSong('Summer Vibes', 0)">
+                <div class="track-item" id="track-p3-0" onclick="playSong('Relaxing Songs', 0)">
                     <div class="track-left">
                         <span class="track-num">1</span>
                         <div class="track-details">
-                            <span class="track-title">Beach Jam</span>
-                            <span class="track-artist">Coming Soon</span>
-                        </div>
-                    </div>
-                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- PLAYLIST 3 -->
-        <div class="playlist-page">
-            <div class="disc-wrapper spinning paused" id="disc-3"></div>
-            <div class="playlist-info">
-                <div class="playlist-title">Relaxing Mood</div>
-                <div class="playlist-sub">Lofi & Rain Sounds</div>
-            </div>
-            <div class="track-list">
-                <div class="track-item" id="track-p3-0" onclick="playSong('Relaxing Mood', 0)">
-                    <div class="track-left">
-                        <span class="track-num">1</span>
-                        <div class="track-details">
-                            <span class="track-title">Midnight Lofi</span>
+                            <span class="track-title">Relaxing Track 1</span>
                             <span class="track-artist">Coming Soon</span>
                         </div>
                     </div>
@@ -344,7 +327,7 @@
 
     </div>
 
-    <!-- Fixed Bottom Player Bar -->
+    <!-- Fixed Bottom Player -->
     <div class="player-bar">
         <div class="player-meta">
             <div>
@@ -360,19 +343,18 @@
 
     <script>
         const playlists = {
-            "Old Songs 20s": [
-                { title: "Binibini", file: "song.mp3", elemId: "track-p1-0" },
-                { title: "Classic Track 2", file: "song2.mp3", elemId: "track-p1-1" }
+            "Favorite Songs": [
+                { title: "Binibini", file: "song.mp3", elemId: "track-p1-0" }
             ],
-            "Summer Vibes": [
-                { title: "Beach Jam", file: "summer1.mp3", elemId: "track-p2-0" }
+            "Reggae Songs": [
+                { title: "Reggae Track 1", file: "reggae1.mp3", elemId: "track-p2-0" }
             ],
-            "Relaxing Mood": [
-                { title: "Midnight Lofi", file: "lofi1.mp3", elemId: "track-p3-0" }
+            "Relaxing Songs": [
+                { title: "Relaxing Track 1", file: "relax1.mp3", elemId: "track-p3-0" }
             ]
         };
 
-        let currentCategory = "Old Songs 20s";
+        let currentCategory = "Favorite Songs";
         let currentIndex = 0;
         let isShuffle = false;
 
@@ -386,7 +368,6 @@
         function playSong(category, index) {
             if (!playlists[category] || !playlists[category][index]) return;
 
-            // Remove active style from all tracks
             document.querySelectorAll('.track-item').forEach(el => el.classList.remove('playing'));
 
             currentCategory = category;
@@ -397,7 +378,6 @@
             trackTitle.textContent = song.title;
             playlistTitle.textContent = category;
 
-            // Highlight selected track row
             const trackElem = document.getElementById(song.elemId);
             if (trackElem) trackElem.classList.add('playing');
 
@@ -415,7 +395,6 @@
             shuffleBtn.textContent = isShuffle ? '🔀 Shuffle ON' : '🔀 Shuffle OFF';
         }
 
-        // Autoplay next track when finished
         player.addEventListener('ended', function() {
             const currentList = playlists[currentCategory];
             if (!currentList) return;
@@ -429,4 +408,6 @@
     </script>
 </body>
 </html>
+
+
 
