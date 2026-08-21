@@ -82,27 +82,23 @@
         }
 
         .disc-wrapper {
-            position: relative;
             width: 160px;
             height: 160px;
             margin: 10px 0 20px 0;
             border-radius: 50%;
-            background: radial-gradient(circle, #333 15%, #111 16%, #222 30%, #000 70%);
+            background: #181818;
             box-shadow: 0 12px 30px rgba(0,0,0,0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid #222;
+            border: 2px solid var(--card-border);
+            flex-shrink: 0;
         }
 
-        .disc-wrapper::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
+        .disc-wrapper svg {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background: #121212;
-            border: 2px solid var(--accent-color);
         }
 
         .spinning {
@@ -264,7 +260,16 @@
 
         <!-- PLAYLIST 1: Favorite Songs -->
         <div class="playlist-page">
-            <div class="disc-wrapper spinning paused"></div>
+            <div class="disc-wrapper spinning paused">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="#121212" stroke="#282828" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="32" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="24" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="16" fill="#1db954"/>
+                    <circle cx="50" cy="50" r="5" fill="#121212"/>
+                </svg>
+            </div>
             <div class="playlist-info">
                 <div class="playlist-title">Favorite Songs</div>
                 <div class="playlist-sub">Top Heavy Rotation</div>
@@ -295,7 +300,16 @@
 
         <!-- PLAYLIST 2: Reggae Songs -->
         <div class="playlist-page">
-            <div class="disc-wrapper spinning paused"></div>
+            <div class="disc-wrapper spinning paused">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="#121212" stroke="#282828" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="32" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="24" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="16" fill="#1db954"/>
+                    <circle cx="50" cy="50" r="5" fill="#121212"/>
+                </svg>
+            </div>
             <div class="playlist-info">
                 <div class="playlist-title">Reggae Songs</div>
                 <div class="playlist-sub">Island Beats & Roots</div>
@@ -346,7 +360,16 @@
 
         <!-- PLAYLIST 3: Relaxing Songs -->
         <div class="playlist-page">
-            <div class="disc-wrapper spinning paused"></div>
+            <div class="disc-wrapper spinning paused">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="#121212" stroke="#282828" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="32" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="24" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="50" cy="50" r="16" fill="#1db954"/>
+                    <circle cx="50" cy="50" r="5" fill="#121212"/>
+                </svg>
+            </div>
             <div class="playlist-info">
                 <div class="playlist-title">Relaxing Songs</div>
                 <div class="playlist-sub">Chill Acoustic & Lofi</div>
