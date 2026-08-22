@@ -276,23 +276,27 @@
             </div>
             <div class="track-list">
                 <div class="track-item" id="track-p1-0" onclick="playSong('Favorite Songs', 0)">
-                    <div class="track-left">
-                        <span class="track-num">1</span>
-                        <div class="track-details">
-                            <span class="track-title">Binibini</span>
-                            <span class="track-artist">Brownman Revival</span>
-                        </div>
-                    </div>
+                    <div class="track-left"><span class="track-num">1</span><div class="track-details"><span class="track-title">Binibini</span><span class="track-artist">Brownman Revival</span></div></div>
                     <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
                 </div>
                 <div class="track-item" id="track-p1-1" onclick="playSong('Favorite Songs', 1)">
-                    <div class="track-left">
-                        <span class="track-num">2</span>
-                        <div class="track-details">
-                            <span class="track-title">Lintik</span>
-                            <span class="track-artist">Brownman Revival</span>
-                        </div>
-                    </div>
+                    <div class="track-left"><span class="track-num">2</span><div class="track-details"><span class="track-title">Hitik Sa Bunga</span><span class="track-artist">Brownman Revival</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p1-2" onclick="playSong('Favorite Songs', 2)">
+                    <div class="track-left"><span class="track-num">3</span><div class="track-details"><span class="track-title">Ikaw Lang Ang Mahal</span><span class="track-artist">Brownman Revival</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p1-3" onclick="playSong('Favorite Songs', 3)">
+                    <div class="track-left"><span class="track-num">4</span><div class="track-details"><span class="track-title">Lintik</span><span class="track-artist">Brownman Revival</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p1-4" onclick="playSong('Favorite Songs', 4)">
+                    <div class="track-left"><span class="track-num">5</span><div class="track-details"><span class="track-title">Maling Akala</span><span class="track-artist">Brownman Revival</span></div></div>
+                    <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
+                </div>
+                <div class="track-item" id="track-p1-5" onclick="playSong('Favorite Songs', 5)">
+                    <div class="track-left"><span class="track-num">6</span><div class="track-details"><span class="track-title">Sorry Na, Pwede Ba</span><span class="track-artist">Brownman Revival</span></div></div>
                     <span style="color:var(--text-sub); font-size:0.8rem;">▶</span>
                 </div>
             </div>
@@ -401,15 +405,19 @@
     <script>
         const playlists = {
             "Favorite Songs": [
-                { title: "Binibini - Brownman Revival", file: "song.mp3", elemId: "track-p1-0" },
-                { title: "Lintik - Brownman Revival", file: "Lintik.mp3", elemId: "track-p1-1" }
+                { title: "Binibini - Brownman Revival", file: "Binibini.mp3", elemId: "track-p1-0" },
+                { title: "Hitik Sa Bunga - Brownman Revival", file: "hitiksabunga.mp3", elemId: "track-p1-1" },
+                { title: "Ikaw Lang Ang Mahal - Brownman Revival", file: "ikawlangmahal.mp3", elemId: "track-p1-2" },
+                { title: "Lintik - Brownman Revival", file: "Lintik.mp3", elemId: "track-p1-3" },
+                { title: "Maling Akala - Brownman Revival", file: "malingakala.mp3", elemId: "track-p1-4" },
+                { title: "Sorry Na, Pwede Ba - Brownman Revival", file: "sorrynapedeba.mp3", elemId: "track-p1-5" }
             ],
             "Reggae Songs": [
                 { title: "Cool Down - Kolohe Kai", file: "cooldown.mp3", elemId: "track-p2-0" },
                 { title: "Dream Girl - Kolohe Kai", file: "dreamgirl.mp3", elemId: "track-p2-1" },
                 { title: "Ehu Girl - Kolohe Kai", file: "ehugirl.mp3", elemId: "track-p2-2" },
                 { title: "First True Love - Kolohe Kai", file: "firsttruelove.mp3", elemId: "track-p2-3" },
-                { title: "Live Like a Warrior - Matisyahu", file: "livewarrior.mp3", elemId: "track-p2-4" },
+                { title: "Live Like a Warrior - Matisyahu", file: "Livewarrior.mp3", elemId: "track-p2-4" },
                 { title: "One Day - Matisyahu", file: "oneday.mp3", elemId: "track-p2-5" },
                 { title: "Sunshine - Matisyahu", file: "sunshine.mp3", elemId: "track-p2-6" },
                 { title: "Green To Black - Rebelution", file: "greentoblack.mp3", elemId: "track-p2-7" },
